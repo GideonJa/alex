@@ -1,0 +1,323 @@
+<div class="wrap" role="document">
+    <div class="content">
+      <div class="main col-sm-8 col-lg-8" role="main">
+        <div class="page-header">
+</div>  <div class="sections main-content">
+  <div class="section centered">
+    <h1>Conversations</h1>
+    <p class="subline">Join a discussion with Hack For Big Choices participants.</p>
+  </div>
+
+<div class="section">
+
+  <div id="widget" style="min-height: 250px;"><script type="text/template" id="lyte-threadsCollection">
+  <div id="lyte-wrapper"  class="lyte-loggedout" >
+    <div id="lyte-threads-create-wrapper">
+
+        <form accept-charset="UTF-8" action="/recognitions" class="new_recognition" id="new_recognition" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="GVCwUFSk0kmzP4kFs7AV/bA/+5eIwdIMAfT/AGiqhqw=" /></div>
+          <input id="recognition_sender_id" name="recognition[sender_id]" type="hidden" />
+
+          <input id="recognition_recipients" multiple="multiple" name="recognition[recipients][]" type="hidden" value="Group:77" />
+          <input id="recognition_reason" name="recognition[reason]" placeholder="Write a conversation title" type="text" />
+          <div id="lyte-create-thread-body">
+            <textarea id="recognition_message" name="recognition[message]" placeholder="Write an optional message">
+</textarea>    
+
+
+
+              <a class="sign-in-with-google " href="https://lyte.io/auth/google_oauth2">  
+                <span>Start a Conversation by First Logging Into Google</span>    
+</a>
+
+          </div>
+</form>
+      
+    </div>
+
+    <div id="lyte-threads" class="accordion">
+      {{#if threads}}
+        {{#each threads}}
+          {{> thread}}
+        {{/each}}
+        {{else}}
+          <span id="no-threads-yet">No threads exist for this group.</span>
+      {{/if}}
+    </div>
+  </div>
+</script>
+
+<script type="text/template" id="lyte-threadItem">
+  <div id="{{slug}}" class="lyte-thread drawer-wrapper closed">
+    <div class="trigger">
+      <div class="lyte-who">
+        <img class="lyte-avatar" src="{{sender_avatar}}" title="{{sender_name}}">
+        <p class="lyte-author-name lyte-offscreen" itemprop="author">{{sender_name}}</p>
+      </div>
+      <div class="lyte-thread-content">
+        <h2 class="lyte-thread-title lyte-accordion-trigger">{{title}}</h2>
+      </div>
+      {{#unless is_fake}}
+        <div class="lyte-thread-expand">
+          <a href="#" class="lyte-accordion-trigger"><span class="vertical"></span><span class="horizontal"></span></a>
+        </div>
+      {{/unless}}
+    </div>
+
+  
+    <div class="lyte-thread-comments drawer" style="height: 0;">
+      {{#unless is_fake}}
+        <div class="inner">
+        <div class="lyte-message-wrapper">
+          <p class="lyte-thread-message">{{{markdown_message}}}</p>
+          <span class="lyte-subtle lyte-comment-time">{{friendly_date}}{{#url}} | <a href="{{.}}" target="_blank">View details</a>{{/url}}</span>
+        </div>
+        
+          <div class="lyte-comment-header-wrapper"><h3>Comments</h3></div>
+
+          <div class="lyte-comments">
+          {{#if comments}}
+            {{#each comments}}
+              {{> comment}}
+            {{/each}}
+          {{/if}}
+
+          </div>
+        
+          <div class="lyte-comment-form-wrapper">
+
+            <form accept-charset="UTF-8" action="/recognitions/{{id}}/comments" class="new_comment" id="new_comment" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="GVCwUFSk0kmzP4kFs7AV/bA/+5eIwdIMAfT/AGiqhqw=" /></div>
+              <textarea class="lyte-comment-input" disabled="disabled" id="comment_content" name="comment[content]" placeholder="Write a comment">
+</textarea><br>
+                <a class="sign-in-with-google " href="https://lyte.io/auth/google_oauth2">  
+                  <span>Sign in with Google to comment</span>    
+</a></form>          </div>
+        </div>
+      {{/unless}}
+    </div>
+    
+
+  </div>
+</script>
+
+<script type="text/template" id="lyte-commentItem">
+  <div id="{{fakeId}}" class="lyte-comment-wrapper" data-commentId="{{id}}">
+    <div class="lyte-who">
+      <img class="lyte-avatar" src="{{sender_avatar}}" title="{{sender_name}}">  
+      <p class="lyte-author-name lyte-offscreen">{{sender_name}}</p>
+    </div>
+    <div class="lyte-comment">
+       {{{markdown_content}}} 
+       <span class="lyte-subtle lyte-comment-time">{{friendly_date}}</span><br>
+       {{#if can_edit}}
+        <a href="{{thread_url}}" class="lyte-comment-edit-link" target="_blank">Edit</a>
+       {{/if}}
+    </div>
+  </div>
+</script>
+
+
+  <div id="lyte-wrapper" class="lyte-loggedout">
+    <div id="lyte-threads-create-wrapper" class="open">
+
+        <form accept-charset="UTF-8" action="/recognitions" class="new_recognition" id="new_recognition" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="GVCwUFSk0kmzP4kFs7AV/bA/+5eIwdIMAfT/AGiqhqw="></div>
+          <input id="recognition_sender_id" name="recognition[sender_id]" type="hidden">
+
+          <input id="recognition_recipients" multiple="multiple" name="recognition[recipients][]" type="hidden" value="Group:77">
+          <input id="recognition_reason" name="recognition[reason]" placeholder="Write a conversation title" type="text">
+          <div id="lyte-create-thread-body">
+            <textarea id="recognition_message" name="recognition[message]" placeholder="Write an optional message"></textarea>    
+
+
+
+              <a class="sign-in-with-google " href="https://lyte.io/auth/google_oauth2">  
+                <span>Start a Conversation by First Logging Into Google</span>    
+</a>
+
+          </div>
+</form>
+      
+    </div>
+
+    <div id="lyte-threads" class="accordion">
+      
+        
+          
+  <div id="c8eos8vt9po" class="lyte-thread drawer-wrapper closed">
+    <div class="trigger">
+      <div class="lyte-who">
+        <img class="lyte-avatar" src="https://lyte-production-assets.s3-us-west-1.amazonaws.com/uploads/production/avatar_attachment/4/file/small_thumb_avatar.jpg?AWSAccessKeyId=AKIAJXREAH2PNC7CRN6A&amp;Signature=0rk9abz%2FAIMaWEf8n7A4V%2BfrLIo%3D&amp;Expires=1381861147" title="Alex Grande">
+        <p class="lyte-author-name lyte-offscreen" itemprop="author">Alex Grande</p>
+      </div>
+      <div class="lyte-thread-content">
+        <h2 class="lyte-thread-title lyte-accordion-trigger">Easy ways to lower your emissions. Be green!</h2>
+      </div>
+      
+        <div class="lyte-thread-expand">
+          <a href="#" class="lyte-accordion-trigger"><span class="vertical"></span><span class="horizontal"></span></a>
+        </div>
+      
+    </div>
+
+  
+    <div class="lyte-thread-comments drawer" style="height: 0;">
+      
+        <div class="inner">
+        <div class="lyte-message-wrapper">
+          <p class="lyte-thread-message"></p><p><a href="http://www.50waystohelp.com/">http://www.50waystohelp.com/</a></p>
+<p></p>
+          <span class="lyte-subtle lyte-comment-time">12 days ago | <a href="http://lyte.io/recognitions/c8eos8vt9po" target="_blank">View details</a></span>
+        </div>
+        
+          <div class="lyte-comment-header-wrapper"><h3>Comments</h3></div>
+
+          <div class="lyte-comments">
+          
+            
+              
+  <div id="" class="lyte-comment-wrapper" data-commentid="2336">
+    <div class="lyte-who">
+      <img class="lyte-avatar" src="http://lyte.io/assets/icons/user-default.png" title="Satjot Sawhney">  
+      <p class="lyte-author-name lyte-offscreen">Satjot Sawhney</p>
+    </div>
+    <div class="lyte-comment">
+       <p>great idea!</p>
+ 
+       <span class="lyte-subtle lyte-comment-time">11 days ago</span><br>
+       
+    </div>
+  </div>
+
+            
+          
+
+          </div>
+        
+          <div class="lyte-comment-form-wrapper">
+
+            <form accept-charset="UTF-8" action="/recognitions/628/comments" class="new_comment" id="new_comment" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="GVCwUFSk0kmzP4kFs7AV/bA/+5eIwdIMAfT/AGiqhqw="></div>
+              <textarea class="lyte-comment-input" disabled="disabled" id="comment_content" name="comment[content]" placeholder="Write a comment"></textarea><br>
+                <a class="sign-in-with-google " href="https://lyte.io/auth/google_oauth2">  
+                  <span>Sign in with Google to comment</span>    
+</a></form>          </div>
+        </div>
+      
+    </div>
+    
+
+  </div>
+
+        
+          
+  <div id="c8ff9567a56" class="lyte-thread drawer-wrapper closed">
+    <div class="trigger">
+      <div class="lyte-who">
+        <img class="lyte-avatar" src="http://lyte.io/assets/icons/user-default.png" title="Satjot Sawhney">
+        <p class="lyte-author-name lyte-offscreen" itemprop="author">Satjot Sawhney</p>
+      </div>
+      <div class="lyte-thread-content">
+        <h2 class="lyte-thread-title lyte-accordion-trigger">New Idea for iOS</h2>
+      </div>
+      
+        <div class="lyte-thread-expand">
+          <a href="#" class="lyte-accordion-trigger"><span class="vertical"></span><span class="horizontal"></span></a>
+        </div>
+      
+    </div>
+
+  
+    <div class="lyte-thread-comments drawer" style="height: 0;">
+      
+        <div class="inner">
+        <div class="lyte-message-wrapper">
+          <p class="lyte-thread-message"></p><p>I'm working on an idea - lyft for meals.  Basically, order food from mom and pops or chefs at home or anyone that's cooked something - give them a donation for that food.  I want home-made apple pie please!</p>
+<p></p>
+          <span class="lyte-subtle lyte-comment-time">11 days ago | <a href="http://lyte.io/recognitions/c8ff9567a56" target="_blank">View details</a></span>
+        </div>
+        
+          <div class="lyte-comment-header-wrapper"><h3>Comments</h3></div>
+
+          <div class="lyte-comments">
+          
+
+          </div>
+        
+          <div class="lyte-comment-form-wrapper">
+
+            <form accept-charset="UTF-8" action="/recognitions/631/comments" class="new_comment" id="new_comment" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="GVCwUFSk0kmzP4kFs7AV/bA/+5eIwdIMAfT/AGiqhqw="></div>
+              <textarea class="lyte-comment-input" disabled="disabled" id="comment_content" name="comment[content]" placeholder="Write a comment"></textarea><br>
+                <a class="sign-in-with-google " href="https://lyte.io/auth/google_oauth2">  
+                  <span>Sign in with Google to comment</span>    
+</a></form>          </div>
+        </div>
+      
+    </div>
+    
+
+  </div>
+
+        
+        
+    </div>
+  </div>
+<div id="lyte-widgetFooter">
+
+  <hr class="hr">
+    <div class="centered">
+      <p class="lyte-powered">Created by <a href="http://planet.io" target="_blank">Planet</a></p>
+    </div>
+
+
+</div>
+
+
+</div>
+
+</div>
+</div>
+
+
+
+
+ <script type="text/javascript">
+
+	 var _lyteWidgets = _lyteWidgets || [];
+	 _lyteWidgets.push({container: '#widget', group: '77'});
+
+	 (function() {
+	   var lw = document.createElement('script'); lw.type = 'text/javascript'; lw.async = true;
+	   lw.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'lyte.io/widgets/threads.js';
+	   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(lw, s);
+	 })();
+
+</script>        </div><!-- /.main -->
+      <!--       <aside class="sidebar col-sm-4 col-lg-4" role="complementary">
+        <section class="widget search-2 widget_search"><div class="widget-inner"><form role="search" method="get" class="search-form form-inline" action="http://www.hackforbigchoices.com/">
+  <div class="input-group">
+    <input type="search" value="" name="s" class="search-field form-control" placeholder="Search Hack for Big Choices">
+    <label class="hide">Search for:</label>
+    <span class="input-group-btn">
+      <button type="submit" class="search-submit btn btn-default">Search</button>
+    </span>
+  </div>
+</form>
+</div></section>		<section class="widget recent-posts-2 widget_recent_entries"><div class="widget-inner">		<h3>Recent Posts</h3>		<ul>
+					<li>
+				<a href="http://www.hackforbigchoices.com/blog/welcome-hack-big-choices/" title="Welcome to Hack For Big Choices">Welcome to Hack For Big Choices</a>
+						</li>
+				</ul>
+		</div></section><section class="widget recent-comments-2 widget_recent_comments"><div class="widget-inner"><h3>Recent Comments</h3><ul id="recentcomments"></ul></div></section><section class="widget archives-2 widget_archive"><div class="widget-inner"><h3>Archives</h3>		<ul>
+			<li><a href='http://www.hackforbigchoices.com/blog/2013/09/' title='September 2013'>September 2013</a></li>
+		</ul>
+</div></section><section class="widget categories-2 widget_categories"><div class="widget-inner"><h3>Categories</h3>		<ul>
+	<li class="cat-item cat-item-1"><a href="http://www.hackforbigchoices.com/blog/category/uncategorized/" title="View all posts filed under Uncategorized">Uncategorized</a>
+</li>
+		</ul>
+</div></section><section class="widget meta-2 widget_meta"><div class="widget-inner"><h3>Meta</h3>			<ul>
+						<li><a rel="nofollow" href="http://www.hackforbigchoices.com/wp-login.php">Log in</a></li>
+			<li><a href="http://www.hackforbigchoices.com/feed/" title="Syndicate this site using RSS 2.0">Entries <abbr title="Really Simple Syndication">RSS</abbr></a></li>
+			<li><a href="http://www.hackforbigchoices.com/comments/feed/" title="The latest comments to all posts in RSS">Comments <abbr title="Really Simple Syndication">RSS</abbr></a></li>
+			<li><a href="http://wordpress.org/" title="Powered by WordPress, state-of-the-art semantic personal publishing platform.">WordPress.org</a></li>						</ul>
+</div></section>      </aside>
+       -->
+    </div><!-- /.content -->
+  </div>
